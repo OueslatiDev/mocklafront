@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        blue: "#2f80ed",
         white: "#fff",
         dimgray: {
           "100": "#585050",

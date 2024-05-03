@@ -16,8 +16,11 @@ interface MessageProps {
      // Indicateur pour savoir si le message appartient à l'utilisateur actuel
   }
 const Message: FunctionComponent <MessageProps> = ({message ,own }) => {
-useEffect(()=>{console.log(own)},[own])
-   
+useEffect(()=>{console.log(own)
+  console.log(message.message)
+  console.log(message.senderId)
+},[own,message])
+   console.log(message.message)
   return (
     <div className={own ? "message own" : "message"}>
       
@@ -28,6 +31,7 @@ useEffect(()=>{console.log(own)},[own])
           alt=""
         />
         <p className="messageText">{message.message}</p>
+
       </div>
       <div className="messageBottom">{format(message.creationDate)}</div>
     </div>

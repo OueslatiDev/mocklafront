@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo, type CSSProperties } from "react";
+import { FunctionComponent, useMemo, CSSProperties } from "react";
 
 export type InfoCollectorType = {
   /** Style props */

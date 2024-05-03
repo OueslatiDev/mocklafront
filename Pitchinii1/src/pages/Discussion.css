@@ -1,79 +1,90 @@
 .kol{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .messenger {
-    height: calc(100vh - 70px);
-    display: flex;
+  height: calc(100vh - 70px);
+  display: flex;
+  width:499px;
 
-  }
-  
-  .chatMenu {
-    flex: 3.5;
-  }
-  
-  .chatMenuInput {
-    width: 90%;
-    padding: 10px 0;
-    border: none;
-    border-bottom: 1px solid gray;
-  }
-  
-  .chatBox {
-    flex: 5.5;
-  }
-  .chatOnline {
-    flex: 3;
-  }
+}
 
+.chatMenu {
+  flex: 3.2;
   
-  .chatMenuWrapper,
+}
+.nathem{
+  display: flex;
+  flex-direction: column;
+}
+.tahtism{
+  height: calc(100vh - 70px);
+  display: flex;
+  width: 100%;
+}
+.chatMenuInput {
+  width: 90%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.chatBox {
+  flex: 7.5;
+}
+.chatOnline {
+  flex: 3;
+}
+
+.chatMenuWrapper,
+.chatMenuWrapper,
 .chatBoxWrapper,
 .chatOnlineWrapper {
-  padding: 10px;
-  height: 100%;
+padding: 10px;
+height: 100%;
 }
 
 .chatBoxWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-  }
-  
-  .chatBoxTop {
-    height: 100%;
-    overflow-y: scroll;
-    padding-right: 10px;
-  }
-  
-  .chatBoxBottom {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .chatMessageInput {
-    width: 80%;
-    height: 90px;
-    padding: 10px;
-  }
-  
-  .chatSubmitButton {
-    width: 70px;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: teal;
-    color: white;
-  }
-  .noConversationText {
-    position: absolute;
-    top: 10%;
-    font-size: 40px;
-    color: rgb(224, 220, 220);
-    cursor: default;
-    padding: 40px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatBoxTop {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+  margin-top: 0px;
+}
+
+.chatBoxBottom {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatMessageInput {
+  width: 80%;
+  height: 90px;
+  padding: 10px;
+}
+
+.chatSubmitButton {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+}
+.noConversationText {
+  position: absolute;
+  top: 10%;
+  font-size: 40px;
+  color: rgb(224, 220, 220);
+  cursor: default;
+  padding: 40px;
+}

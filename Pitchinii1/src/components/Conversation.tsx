@@ -62,7 +62,7 @@ const Conversation: FunctionComponent<FrameComponentProps> = ({conversation,user
   }, [userId,conversation])
   return (
     <div className="conversation">
-  <img className="conversationImg"  src={userFriend ? userFriend.profilePicture : "/téléchargement (4).png"} alt=""/>
+  <img className="conversationImg"  src={userFriend?.profilePicture } alt=""/>
     <span className="conversationName">{userFriend?.first_name+" "+userFriend?.last_name}</span>
     </div>
   );
