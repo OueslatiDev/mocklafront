@@ -13,7 +13,7 @@ const LeftIsm: FunctionComponent = () => {
             <div className="self-stretch flex flex-row items-end justify-start gap-[8.1px]">
               <div className="flex flex-col items-start justify-end pt-0 px-0 pb-px">
                 <img
-                  className="w-[22.3px] h-[18.2px] relative object-cover"
+                  className="w-[22.3px] h-[18.2px]  Pt-40px relative object-cover"
                   loading="lazy"
                   alt=""
                   src="/vecteezy-notificationiconsvectordesign-10654946-converti05-15@2x.png"
@@ -38,8 +38,8 @@ const LeftIsm: FunctionComponent = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-[22px] box-border w-[920px] text-5xl ">
-          <div className="self-stretch bg-[#c7def3] overflow-hidden flex flex-col items-start justify-start py-10 px-[35px] box-border max-w-full z-[1]">
+        <div className="flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-[22px] box-border w-[920px]  text-5xl ">
+          <div className="  h-[150px]  self-stretch bg-[#c7def3] overflow-hidden flex flex-col items-start justify-start mt-0 py-0 px-[35px] box-border max-w-full z-[1]">
             <div className="self-stretch  bg-[#c7def3] flex flex-row items-center justify-between py-0 px-0 box-border max-w-full gap-[10px] mq975:flex-wrap">
                <div className="w-[19.2px] flex flex-row items-center justify-start gap-[16px]  mq450:flex-wrap">
                 <img

@@ -10,6 +10,8 @@ import {
 
   import { useNavigate } from "react-router-dom";
 ;
+import { Paper } from "@mui/material";
+
 import Navbar from "../components/Navbar";
 import { get } from "../utilFunctions/getData";
 import { validateNotEmpty } from "../utilFunctions/ValidateFunction (1)";
@@ -17,6 +19,8 @@ import { send } from "../utilFunctions/sendData";
 import SignUpSecondHeader from "../components/SignUpSecondHeader";
 import ProjectTimeline from "../components/ProjectTimeLine";
 import StepOneFormPostProject from "../components/StepOneFormPostProject";
+import Nav from "../components/Nav";
+import Naav from "../components/Naav";
   
   const PostProject: FunctionComponent = () => {
     const [title, setTitle] = useState<string>("");
@@ -28,44 +32,37 @@ import StepOneFormPostProject from "../components/StepOneFormPostProject";
     const [domainAndSkills, setDomainAndSkills] = useState<any[]>([]); // Define domainAndSkills state
     const [domainServicesPrices, setDomainServicesPrices] = useState<any[]>([]); // Define domainAndSkills state
     const [services, setServices] = useState<string[]>([]);
-    const [sum, setsum] = useState();
+    const [sum, setsum] = useState<number>(0);
     const [devis, setDevis] = useState(false);
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedValue, setSelectedValue] = useState<string>(""); // State to hold selected value
   
-    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedValue(event.target.value);
-        onChange(event.target.value); // Utilisation de onChange au lieu de onchange
-      };
-      
-    const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const selectedDateValue = event.target.value; // Get the value from the input field
-      // const dateObject = new Date(selectedDateValue); // Convert the value to a Date object
-  
-      // Format the date to 'yyyy-MM-dd'
-      //  const formattedDate = dateObject.toISOString().split("T")[0]; // Get 'yyyy-MM-dd' part
-  
-      setSelectedDate(selectedDateValue); // Set the formatted date string in the state
+    const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+      setSelectedValue(event.target.value);
     };
   
+    const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+      setSelectedDate(event.target.value);
+    };
+
     useEffect(() => {
       async function fetchData() {
-        const res = await get("http://localhost:3001/api/services/all");
+        const res = await get("http://localhost:3001/api/service/all");
         const values = await res;
   
-        const domainAndSkillsData = values.map((item) => ({
+        const domainAndSkillsData = values.map((item: { id: string, domaine: string, service: string, price: string }) => ({
           id: item.id,
           domaine: item.domaine,
           service: item.service,
           price: item.price,
         }));
+        
   
         setDomainServicesPrices(domainAndSkillsData);
       }
   
       fetchData();
     }, []);
-  
     const handleDomainChange = (event: SelectChangeEvent<{ value: unknown }>) => {
       const selectedValue = event.target.value;
   
@@ -77,31 +74,32 @@ import StepOneFormPostProject from "../components/StepOneFormPostProject";
     };
   
     const handleServicesChange = (
-      event: SelectChangeEvent<{ value: unknown }>
+      event: SelectChangeEvent<string[]>,
     ) => {
       const selectedValue = event.target.value;
-  
-      if (typeof selectedValue === "string") {
-        setServices([selectedValue]); // Update skills state with single selected value
-      } else if (Array.isArray(selectedValue)) {
-        setServices(selectedValue as string[]); // Update skills state with selected array
+    
+      if (Array.isArray(selectedValue)) {
+        setServices(selectedValue); // Update skills state with selected array
       }
     };
-    useEffect(() => {
-      async function fetchData() {
-        const res = await get("http://localhost:3001/api/competence/all");
-        const values = await res;
-  
-        const domainAndSkillsData = values.map((item) => ({
-          domaine: item.domaine,
-          skills: item.skillName,
-        }));
-  
-        setDomainAndSkills(domainAndSkillsData);
-      }
-  
-      fetchData();
-    }, []);
+    
+    
+ useEffect(() => {
+  async function fetchData() {
+    const res = await get("http://localhost:3001/api/competence/all");
+    const values = await res;
+
+    const domainAndSkillsData = values.map((item: { domaine: string; skillName: string }) => ({
+      domaine: item.domaine,
+      skills: item.skillName,
+    }));
+
+    setDomainAndSkills(domainAndSkillsData);
+  }
+
+  fetchData();
+}, []);
+
   
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const files = event.target.files;
@@ -230,7 +228,7 @@ import StepOneFormPostProject from "../components/StepOneFormPostProject";
     return (
       <div className="w-full relative flex flex-row items-start justify-start tracking-[normal]">
         <main className="h-[2129px] flex-1 bg-white flex flex-col items-start justify-start pt-0 px-0 pb-[69px] box-border gap-[72px] max-w-full text-left text-[16.4px] text-gray-3 font-join-text lg:pb-5 lg:box-border mq450:gap-[18px_72px] mq750:h-auto mq750:gap-[36px_72px]">
-          <Navbar />
+          <Naav />
           <section className="self-stretch flex flex-row items-start justify-center pt-0 px-5 pb-[6062.700000000001px] box-border max-w-full shrink-0 text-left text-44xl text-grey font-join-text lg:pb-[1665px] lg:box-border mq450:pb-[703px] mq450:box-border mq1050:pb-[1082px] mq1050:box-border">
             <div className="w-[972px] flex flex-col items-start justify-start gap-[77px] max-w-full mq750:gap-[19px_77px] mq1050:gap-[38px_77px]">
               <SignUpSecondHeader
@@ -268,35 +266,35 @@ import StepOneFormPostProject from "../components/StepOneFormPostProject";
                       : "hidden"
                   }
                 >
-                  <Select
-                    className="w-[50%]"
-                    labelId="select-label"
-                    id="select"
-                    value={services}
-                    onChange={handleServicesChange}
-                    displayEmpty
-                    multiple
-                    renderValue={(selected) => (
-                      <div>
-                        {selected.length == 0
-                          ? "Select at least 1 service"
-                          : selected.join(", ")}
-                      </div>
-                    )}
-                  >
-                    {domainServicesPrices.map(
-                      (val, index) =>
-                        domain.includes(val.domaine) && (
-                          <MenuItem key={index} value={val.service}>
-                            {val.service + ": " + val.price}
-                          </MenuItem>
-                        )
-                    )}
-                  </Select>
-  
+                <Select
+  className="w-[50%]"
+  labelId="select-label"
+  id="select"
+  value={services}
+  onChange={handleServicesChange}
+  displayEmpty
+  multiple
+  renderValue={(selected: string[]) => (
+    <div>
+      {selected.length === 0
+        ? "Select at least 1 service"
+        : selected.join(", ")}
+    </div>
+  )}
+>
+  {domainServicesPrices.map(
+    (val, index) =>
+      domain.includes(val.domaine) && (
+        <MenuItem key={index} value={val.service}>
+          {val.service + ": " + val.price}
+        </MenuItem>
+      )
+  )}
+</Select>
+
                   <TableContainer
                     component={Paper}
-                    className={services.length == 0 && "hidden"}
+                    className={services.length === 0 ? "hidden" : ""}
                   >
                     <Table>
                       <TableHead>
@@ -324,9 +322,9 @@ import StepOneFormPostProject from "../components/StepOneFormPostProject";
                     <p className="m-0 " style={{ color: "#6495ED" }}>
                       If you have more personalized tasks request a quotation
                     </p>
-                  <Button
+                    <Button
   variant="contained"
-  style={{
+  sx={{
     backgroundColor: "#fafafa",
     color: "#757575",
     borderRadius: 8,
@@ -336,13 +334,14 @@ import StepOneFormPostProject from "../components/StepOneFormPostProject";
     transition: "background-color 0.3s ease",
     "&:hover": {
       backgroundColor: "#f0f0f0",
-      color: "#000", // Ajout de la couleur du texte au survol
+      color: "#000",
     },
   }}
   onClick={updateDevis}
 >
   Request a quotation
 </Button>
+
 
                     <div className="mt-8 relative">
                       <input

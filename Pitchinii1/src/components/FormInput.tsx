@@ -5,7 +5,7 @@ import { TextField } from "@mui/material";
 function FormInput(props: {
   placeHolder: string;
   type: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   value: string;
   errorStatus: boolean;
   message: string;

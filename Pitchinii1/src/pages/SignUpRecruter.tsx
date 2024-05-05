@@ -1,9 +1,6 @@
 import { ChangeEvent, FunctionComponent, useState, useCallback } from "react";
 import {
   Button,
-  /*InputAdornment,
-  Icon,
-  IconButton,*/
 } from "@mui/material";
 import { validateEmail, validateNotEmpty, validatePassword } from "../components/ValidateFunction";
 import Navbar from "../components/Navbar";
@@ -69,7 +66,7 @@ const SignUp: FunctionComponent = () => {
       : (ConfirPassword = false);
   }
 
-   function validation() {
+  function validation() {
     setIsNextClicked(true);
     if (!last && !first && !Email && !nickName && !Password && !ConfirPassword)
       setstep("02");
@@ -111,7 +108,7 @@ const SignUp: FunctionComponent = () => {
                   placeHolder="First Name"
                   type="text"
                   value={first_name}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     setfirst_name(e.target.value)
                   }
                   message="first name is required"
@@ -123,7 +120,7 @@ const SignUp: FunctionComponent = () => {
                   placeHolder="Last Name"
                   type="text"
                   value={last_name}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     setlast_name(e.target.value)
                   }
                   message="last name is required"
@@ -135,7 +132,7 @@ const SignUp: FunctionComponent = () => {
                   placeHolder="NickName"
                   type="text"
                   value={nickname}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     setNickName(e.target.value)
                   }
                   message={
@@ -151,7 +148,7 @@ const SignUp: FunctionComponent = () => {
                   placeHolder="Email"
                   type="email"
                   value={email}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     setEmail(e.target.value)
                   }
                   message={
@@ -160,11 +157,12 @@ const SignUp: FunctionComponent = () => {
                   errorStatus={Email}
                   textArea={false}
                 />
+
                 <FormInput
                   placeHolder="Password"
                   type="password"
                   value={password}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     setPassword(e.target.value)
                   }
                   message={
@@ -180,7 +178,7 @@ const SignUp: FunctionComponent = () => {
                   placeHolder="Confirm password"
                   type="password"
                   value={confirmPassword}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
                     setConfirmPassword(e.target.value)
                   }
                   message={

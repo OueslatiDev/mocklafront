@@ -58,7 +58,7 @@ const StepOneFormPostProject: FunctionComponent<StepOneContentProps> = ({
         placeHolder="Exemple: Create a WordPress website for my company"
         type="text"
         value={title}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
           setTitle(e.target.value)
         }
         message="Title is required"
@@ -76,7 +76,7 @@ const StepOneFormPostProject: FunctionComponent<StepOneContentProps> = ({
         placeHolder="..."
         type="text"
         value={description}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)  =>
           setDescription(e.target.value)
         }
         message="Description is required"

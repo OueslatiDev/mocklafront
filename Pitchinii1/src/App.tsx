@@ -30,7 +30,7 @@ function App() {
       <Route path="/login-recruiter" element={<LoginRecruiter />} />
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/reset-password/:email/:token" element={<ResetPassword />} />
-      <Route path="/:id" element={<SearchJob />} />
+      <Route path="/searchJob/:id" element={<SearchJob />} />
       <Route path="/discussion/:id" element={<Discussion />} />
 
     </Routes>
